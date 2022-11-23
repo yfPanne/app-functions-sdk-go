@@ -193,12 +193,12 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 
 	appContext := trigger.serviceBinding.BuildContext(message)
 
-	go func() {
-		processErr := trigger.messageProcessor.MessageReceived(appContext, message, trigger.responseHandler)
-		if processErr != nil {
-			trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
-		}
-	}()
+	// go func() {
+	processErr := trigger.messageProcessor.MessageReceived(appContext, message, trigger.responseHandler)
+	if processErr != nil {
+		trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
+	}
+	// }()
 }
 
 func (trigger *Trigger) responseHandler(appContext interfaces.AppFunctionContext, pipeline *interfaces.FunctionPipeline) error {

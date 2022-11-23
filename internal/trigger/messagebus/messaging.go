@@ -33,10 +33,10 @@ import (
 	"github.com/edgexfoundry/go-mod-messaging/v2/messaging"
 	"github.com/edgexfoundry/go-mod-messaging/v2/pkg/types"
 
-	sdkCommon "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/util"
+	sdkCommon "github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/util"
 )
 
 // Trigger implements Trigger to support MessageBusData

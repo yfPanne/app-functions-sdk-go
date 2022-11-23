@@ -4,10 +4,10 @@ module app-new-service
 
 go 1.18
 
-replace github.com/edgexfoundry/app-functions-sdk-go/v2 => ../
+replace github.com/yfpanne/app-functions-sdk-go/v2 => ../
 
 require (
-	github.com/edgexfoundry/app-functions-sdk-go/v2 v2.3.0
+	github.com/yfpanne/app-functions-sdk-go/v2 v2.3.0
 	github.com/edgexfoundry/go-mod-core-contracts/v2 v2.3.0
 	github.com/google/uuid v1.3.0
 	github.com/rcrowley/go-metrics v0.0.0-20201227073835-cf1acfcdf475

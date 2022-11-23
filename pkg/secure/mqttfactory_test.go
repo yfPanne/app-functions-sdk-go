@@ -31,7 +31,7 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/appfunction"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/appfunction"
 )
 
 var lc logger.LoggingClient

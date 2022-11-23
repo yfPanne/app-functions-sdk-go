@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	contracts "github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	contracts "github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 
 	mock "github.com/stretchr/testify/mock"
 )

@@ -16,13 +16,13 @@
 package app
 
 import (
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/store/db"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/store/db/redis"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
 	"github.com/edgexfoundry/go-mod-bootstrap/v2/config"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/store/db"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/store/db/redis"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 	"strings"
 	"testing"
 )

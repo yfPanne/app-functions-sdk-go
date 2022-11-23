@@ -17,11 +17,12 @@
 package transforms
 
 import (
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/appfunction"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	"testing"
+
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/require"
-	"testing"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/appfunction"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 )
 
 func TestStringValuesFormatter_invoke_nil(t *testing.T) {

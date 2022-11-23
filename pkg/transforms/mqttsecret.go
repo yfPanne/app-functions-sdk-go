@@ -24,13 +24,13 @@ import (
 	"time"
 
 	MQTT "github.com/eclipse/paho.mqtt.golang"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/common"
 	gometrics "github.com/rcrowley/go-metrics"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/secure"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/util"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/secure"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/util"
 )
 
 // MQTTSecretSender ...

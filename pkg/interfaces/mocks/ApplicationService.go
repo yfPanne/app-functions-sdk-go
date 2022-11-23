@@ -10,7 +10,7 @@ import (
 
 	http "net/http"
 
-	interfaces "github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	interfaces "github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 
 	logger "github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"
 

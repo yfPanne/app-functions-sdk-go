@@ -20,10 +20,10 @@ import (
 	"strconv"
 	"testing"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/common"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/dtos/requests"
 	"github.com/stretchr/testify/require"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 )
 
 func TestEventWrapper_Wrap(t *testing.T) {

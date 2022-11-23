@@ -18,12 +18,6 @@ package mqtt
 
 import (
 	"fmt"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/appfunction"
-	sdkCommon "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
-	triggerMocks "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/mocks"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/mqtt/mocks"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
-	interfaceMocks "github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces/mocks"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/common"
 	"github.com/edgexfoundry/go-mod-messaging/v2/pkg/types"
@@ -31,6 +25,12 @@ import (
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/appfunction"
+	sdkCommon "github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
+	triggerMocks "github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/mocks"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/mqtt/mocks"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
+	interfaceMocks "github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces/mocks"
 	"testing"
 )
 

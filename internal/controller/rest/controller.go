@@ -25,11 +25,11 @@ import (
 	"github.com/edgexfoundry/go-mod-bootstrap/v2/di"
 	commonDtos "github.com/edgexfoundry/go-mod-core-contracts/v2/dtos/common"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/bootstrap/container"
-	sdkCommon "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/telemetry"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/bootstrap/container"
+	sdkCommon "github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/telemetry"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 
 	bootstrapInterfaces "github.com/edgexfoundry/go-mod-bootstrap/v2/bootstrap/interfaces"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"

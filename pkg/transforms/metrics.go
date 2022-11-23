@@ -21,7 +21,7 @@ import (
 
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/dtos"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 )
 
 // MetricsProcessor contains functions to process the Metric DTO

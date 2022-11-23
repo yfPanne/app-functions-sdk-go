@@ -21,9 +21,10 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/etm"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/util"
+
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/etm"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/util"
 
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/common"
 )

@@ -18,7 +18,7 @@ package container
 import (
 	"github.com/edgexfoundry/go-mod-bootstrap/v2/di"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
 )
 
 // ConfigurationName contains the name of data's common.ConfigurationStruct implementation in the DIC.

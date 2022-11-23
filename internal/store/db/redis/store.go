@@ -19,11 +19,11 @@ package redis
 import (
 	"errors"
 	"fmt"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 	"sync"
 	"time"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/store/db/redis/models"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/store/db/redis/models"
 
 	bootstrapConfig "github.com/edgexfoundry/go-mod-bootstrap/v2/config"
 

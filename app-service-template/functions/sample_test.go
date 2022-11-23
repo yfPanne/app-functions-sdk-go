@@ -21,9 +21,6 @@ import (
 	"os"
 	"testing"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces/mocks"
 	mocks2 "github.com/edgexfoundry/go-mod-core-contracts/v2/clients/interfaces/mocks"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/common"
@@ -31,6 +28,9 @@ import (
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/dtos/responses"
 	edgexErrors "github.com/edgexfoundry/go-mod-core-contracts/v2/errors"
 	"github.com/stretchr/testify/mock"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces/mocks"
 
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"

@@ -3,7 +3,7 @@
 package mocks
 
 import (
-	interfaces "github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	interfaces "github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 	mock "github.com/stretchr/testify/mock"
 
 	types "github.com/edgexfoundry/go-mod-messaging/v2/pkg/types"

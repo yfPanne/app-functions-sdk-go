@@ -27,12 +27,12 @@ import (
 
 	"github.com/edgexfoundry/go-mod-bootstrap/v2/di"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/bootstrap/container"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/http"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/messagebus"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/mqtt"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/bootstrap/container"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/http"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/messagebus"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/mqtt"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 
 	"github.com/edgexfoundry/go-mod-bootstrap/v2/bootstrap"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"

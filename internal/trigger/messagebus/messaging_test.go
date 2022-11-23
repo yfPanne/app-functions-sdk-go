@@ -30,15 +30,15 @@ import (
 	bootstrapMessaging "github.com/edgexfoundry/go-mod-bootstrap/v2/bootstrap/messaging"
 	"github.com/edgexfoundry/go-mod-bootstrap/v2/di"
 
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/appfunction"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/messagebus/mocks"
-	interfaceMocks "github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces/mocks"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/appfunction"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/messagebus/mocks"
+	interfaceMocks "github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces/mocks"
 
 	"github.com/stretchr/testify/mock"
 
-	sdkCommon "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
-	triggerMocks "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/trigger/mocks"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	sdkCommon "github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
+	triggerMocks "github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger/mocks"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/dtos"
 

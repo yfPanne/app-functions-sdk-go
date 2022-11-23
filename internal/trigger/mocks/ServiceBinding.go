@@ -3,10 +3,10 @@
 package mocks
 
 import (
-	appfunction "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/appfunction"
-	common "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/common"
+	appfunction "github.com/yfpanne/app-functions-sdk-go/v2/internal/appfunction"
+	common "github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
 
-	interfaces "github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces"
+	interfaces "github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
 
 	logger "github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"
 
@@ -14,7 +14,7 @@ import (
 
 	mock "github.com/stretchr/testify/mock"
 
-	runtime "github.com/edgexfoundry/app-functions-sdk-go/v2/internal/runtime"
+	runtime "github.com/yfpanne/app-functions-sdk-go/v2/internal/runtime"
 
 	types "github.com/edgexfoundry/go-mod-messaging/v2/pkg/types"
 )

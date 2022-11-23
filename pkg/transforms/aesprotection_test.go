@@ -20,15 +20,16 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/internal/etm"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/interfaces/mocks"
-	"github.com/edgexfoundry/app-functions-sdk-go/v2/pkg/util"
+	"testing"
+
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/clients/logger"
 	"github.com/edgexfoundry/go-mod-core-contracts/v2/common"
 	"github.com/google/uuid"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-	"testing"
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/etm"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces/mocks"
+	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/util"
 )
 
 func TestNewAESProtection(t *testing.T) {

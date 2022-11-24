@@ -18,6 +18,7 @@
 package appfunction
 
 import (
+	"container/list"
 	"context"
 	"errors"
 	"fmt"
@@ -294,4 +295,9 @@ func (appContext *Context) ApplyValues(format string) (string, error) {
 func (appContext *Context) PipelineId() string {
 	id, _ := appContext.GetValue(interfaces.PIPELINEID)
 	return id
+}
+
+// Chain for keep sequence in a topic
+func (appContext *Context) GetChain() *list.Element {
+	return appContext.Dic.Get("topicChainSequence").(*list.Element)
 }

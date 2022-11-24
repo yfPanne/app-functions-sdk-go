@@ -17,6 +17,7 @@
 package interfaces
 
 import (
+	"container/list"
 	"time"
 
 	bootstrapInterfaces "github.com/edgexfoundry/go-mod-bootstrap/v2/bootstrap/interfaces"
@@ -121,4 +122,6 @@ type AppFunctionContext interface {
 	ApplyValues(format string) (string, error)
 	// PipelineId returns the ID of the pipeline that is executing
 	PipelineId() string
+	// Chain for keep sequence in a topic
+	GetChain() *list.Element
 }

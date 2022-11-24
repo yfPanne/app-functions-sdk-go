@@ -3,6 +3,8 @@
 package mocks
 
 import (
+	"container/list"
+
 	bootstrapinterfaces "github.com/edgexfoundry/go-mod-bootstrap/v2/bootstrap/interfaces"
 	clientsinterfaces "github.com/edgexfoundry/go-mod-core-contracts/v2/clients/interfaces"
 
@@ -439,6 +441,11 @@ func (_m *AppFunctionContext) SubscriptionClient() clientsinterfaces.Subscriptio
 	}
 
 	return r0
+}
+
+// Chain for keep sequence in a topic
+func (appContext *AppFunctionContext) GetChain() *list.Element {
+	return nil
 }
 
 type mockConstructorTestingTNewAppFunctionContext interface {

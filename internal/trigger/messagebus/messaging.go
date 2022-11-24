@@ -122,7 +122,7 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 	// Need to have a go func for each subscription, so we know with topic the data was received for.
 	for _, topic := range trigger.topics {
 		appWg.Add(1)
-		go func(triggerTopic types.TopicChannel, chain *list.List, mux *sync.Mutex) {
+		go func(triggerTopic types.TopicChannel, chain *list.List, mux chan bool) {
 			defer appWg.Done()
 			lc.Infof("Waiting for messages from the MessageBus on the '%s' topic", triggerTopic.Topic)
 
@@ -135,7 +135,7 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 					trigger.messageHandler(lc, triggerTopic, message, chain, mux)
 				}
 			}
-		}(topic, list.New().Init(), &sync.Mutex{})
+		}(topic, list.New().Init(), make(chan bool, 1))
 	}
 
 	// Need an addition go func to handle errors and background publishing to the message bus.
@@ -186,7 +186,7 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 	return deferred, nil
 }
 
-func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.TopicChannel, message types.MessageEnvelope, chain *list.List, mux *sync.Mutex) {
+func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.TopicChannel, message types.MessageEnvelope, chain *list.List, mux chan bool) {
 	logger.Debugf("MessageBus Trigger: Received message with %d bytes on topic '%s'. Content-Type=%s",
 		len(message.Payload),
 		message.ReceivedTopic,
@@ -199,8 +199,10 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 	// add element for each message
 	context, ok := appContext.(*appfunction.Context)
 	var e *list.Element
-	mux.Lock()
-	defer mux.Unlock()
+	mux <- true
+	defer func() {
+		<-mux
+	}()
 	if ok {
 		e = chain.PushFront(make(chan bool, 1))
 		context.Dic.Update(di.ServiceConstructorMap{
@@ -216,8 +218,10 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 			trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
 		}
 		if e != nil {
-			mux.Lock()
-			defer mux.Unlock()
+			mux <- true
+			defer func() {
+				<-mux
+			}()
 			// remove element after message processing
 			if e.Next() != nil {
 				ch, ok := e.Next().Value.(chan bool)

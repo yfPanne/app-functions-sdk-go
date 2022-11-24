@@ -18,6 +18,7 @@
 package messagebus
 
 import (
+	"container/list"
 	"context"
 	"errors"
 	"fmt"
@@ -33,6 +34,7 @@ import (
 	"github.com/edgexfoundry/go-mod-messaging/v2/messaging"
 	"github.com/edgexfoundry/go-mod-messaging/v2/pkg/types"
 
+	"github.com/yfpanne/app-functions-sdk-go/v2/internal/appfunction"
 	sdkCommon "github.com/yfpanne/app-functions-sdk-go/v2/internal/common"
 	"github.com/yfpanne/app-functions-sdk-go/v2/internal/trigger"
 	"github.com/yfpanne/app-functions-sdk-go/v2/pkg/interfaces"
@@ -120,7 +122,7 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 	// Need to have a go func for each subscription, so we know with topic the data was received for.
 	for _, topic := range trigger.topics {
 		appWg.Add(1)
-		go func(triggerTopic types.TopicChannel) {
+		go func(triggerTopic types.TopicChannel, chain *list.List, mux *sync.Mutex) {
 			defer appWg.Done()
 			lc.Infof("Waiting for messages from the MessageBus on the '%s' topic", triggerTopic.Topic)
 
@@ -130,10 +132,10 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 					lc.Infof("Exiting waiting for MessageBus '%s' topic messages", triggerTopic.Topic)
 					return
 				case message := <-triggerTopic.Messages:
-					trigger.messageHandler(lc, triggerTopic, message)
+					trigger.messageHandler(lc, triggerTopic, message, chain, mux)
 				}
 			}
-		}(topic)
+		}(topic, list.New().Init(), &sync.Mutex{})
 	}
 
 	// Need an addition go func to handle errors and background publishing to the message bus.
@@ -184,7 +186,7 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 	return deferred, nil
 }
 
-func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.TopicChannel, message types.MessageEnvelope) {
+func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.TopicChannel, message types.MessageEnvelope, chain *list.List, mux *sync.Mutex) {
 	logger.Debugf("MessageBus Trigger: Received message with %d bytes on topic '%s'. Content-Type=%s",
 		len(message.Payload),
 		message.ReceivedTopic,
@@ -193,12 +195,39 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 
 	appContext := trigger.serviceBinding.BuildContext(message)
 
-	// go func() {
-	processErr := trigger.messageProcessor.MessageReceived(appContext, message, trigger.responseHandler)
-	if processErr != nil {
-		trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
+	// use list for sequence control
+	// add element for each message
+	context, ok := appContext.(*appfunction.Context)
+	var e *list.Element
+	mux.Lock()
+	defer mux.Unlock()
+	if ok {
+		e = chain.PushFront(make(chan bool, 1))
+		context.Dic.Update(di.ServiceConstructorMap{
+			"topicChainSequence": func(get di.Get) interface{} {
+				return e
+			},
+		})
 	}
-	// }()
+
+	go func() {
+		processErr := trigger.messageProcessor.MessageReceived(appContext, message, trigger.responseHandler)
+		if processErr != nil {
+			trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
+		}
+		if e != nil {
+			mux.Lock()
+			defer mux.Unlock()
+			// remove element after message processing
+			if e.Next() != nil {
+				ch, ok := e.Next().Value.(chan bool)
+				if ok {
+					ch <- true
+				}
+			}
+			chain.Remove(e)
+		}
+	}()
 }
 
 func (trigger *Trigger) responseHandler(appContext interfaces.AppFunctionContext, pipeline *interfaces.FunctionPipeline) error {

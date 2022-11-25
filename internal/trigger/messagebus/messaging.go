@@ -206,11 +206,7 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 	if ok {
 		logger.Debugf("Trigger process push chain to element. chain len `%v`", chain.Len())
 		e = chain.PushBack(make(chan bool, 1))
-		context.Dic.Update(di.ServiceConstructorMap{
-			"topicChainSequence": func(get di.Get) interface{} {
-				return e
-			},
-		})
+		context.SetChain(e)
 	}
 
 	go func() {

@@ -63,6 +63,8 @@ type Context struct {
 	responseContentType  string
 	contextData          map[string]string
 	valuePlaceholderSpec *regexp.Regexp
+	// chain for message
+	chain *list.Element
 }
 
 // Clone returns a copy of the context that can be manipulated independently.
@@ -299,5 +301,10 @@ func (appContext *Context) PipelineId() string {
 
 // Chain for keep sequence in a topic
 func (appContext *Context) GetChain() *list.Element {
-	return appContext.Dic.Get("topicChainSequence").(*list.Element)
+	return appContext.chain
+}
+
+// Chain for keep sequence in a topic
+func (appContext *Context) SetChain(chain *list.Element) {
+	appContext.chain = chain
 }

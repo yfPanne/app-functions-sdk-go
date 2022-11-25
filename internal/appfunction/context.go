@@ -84,6 +84,7 @@ func (appContext *Context) Clone() interfaces.AppFunctionContext {
 		responseContentType:  appContext.responseContentType,
 		contextData:          contextCopy,
 		valuePlaceholderSpec: appContext.valuePlaceholderSpec,
+		chain:                appContext.chain,
 	}
 }
 

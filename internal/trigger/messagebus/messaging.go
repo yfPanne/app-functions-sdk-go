@@ -204,7 +204,7 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 		<-mux
 	}()
 	if ok {
-		e = chain.PushFront(make(chan bool, 1))
+		e = chain.PushBack(make(chan bool, 1))
 		context.Dic.Update(di.ServiceConstructorMap{
 			"topicChainSequence": func(get di.Get) interface{} {
 				return e
@@ -217,6 +217,7 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 		if processErr != nil {
 			trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
 		}
+		logger.Debugf("Trigger process message over here, will trigger next sequence message.")
 		if e != nil {
 			mux <- true
 			defer func() {

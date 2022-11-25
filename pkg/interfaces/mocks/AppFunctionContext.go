@@ -447,6 +447,10 @@ func (_m *AppFunctionContext) SubscriptionClient() clientsinterfaces.Subscriptio
 func (appContext *AppFunctionContext) GetChain() *list.Element {
 	return nil
 }
+// Chain for keep sequence in a topic
+func (appContext *AppFunctionContext) GetSequenceChannel() <-chan bool {
+	return nil
+}
 
 type mockConstructorTestingTNewAppFunctionContext interface {
 	mock.TestingT

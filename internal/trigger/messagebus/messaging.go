@@ -198,25 +198,28 @@ func (trigger *Trigger) messageHandler(logger logger.LoggingClient, _ types.Topi
 	// use list for sequence control
 	// add element for each message
 	context, ok := appContext.(*appfunction.Context)
-	var e *list.Element
 	mux <- true
 	defer func() { <-mux }()
 	if ok {
-		logger.Debugf("Trigger process push chain to element. chain len `%v`", chain.Len())
-		e = chain.PushBack(make(chan bool, 1))
+		// logger.Debugf("Trigger process push chain to element. chain len `%v`", chain.Len())
+		ch := make(chan bool, 1)
+		e := chain.PushBack(ch)
 		context.SetChain(e)
+		if e.Prev() == nil {
+			// auto trigger the first chain
+			ch <- true
+		}
 	}
-
 	go func() {
 		processErr := trigger.messageProcessor.MessageReceived(appContext, message, trigger.responseHandler)
 		if processErr != nil {
 			trigger.serviceBinding.LoggingClient().Errorf("MessageBus Trigger: Failed to process message on pipeline(s): %s", processErr.Error())
 		}
-		logger.Debugf("Trigger process message over here, will trigger next sequence message. chain len `%v`", chain.Len())
-		if e != nil {
+		// logger.Debugf("Trigger process message over here, will trigger next sequence message. chain len `%v`", chain.Len())
+		if e := context.GetChain(); e != nil {
 			mux <- true
 			defer func() { <-mux }()
-			logger.Debugf("Trigger process will trigger next `%v`", e.Next())
+			// logger.Debugf("Trigger process will trigger next `%v`", e.Next())
 			// remove element after message processing
 			if e.Next() != nil {
 				ch, ok := e.Next().Value.(chan bool)

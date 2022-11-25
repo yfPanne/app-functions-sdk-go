@@ -124,4 +124,5 @@ type AppFunctionContext interface {
 	PipelineId() string
 	// Chain for keep sequence in a topic
 	GetChain() *list.Element
+	GetSequenceChannel() <-chan bool
 }

@@ -309,3 +309,13 @@ func (appContext *Context) GetChain() *list.Element {
 func (appContext *Context) SetChain(chain *list.Element) {
 	appContext.chain = chain
 }
+
+// chan will be trigger when prev-message is processed
+func (appContext *Context) GetSequenceChannel() <-chan bool {
+	if appContext.chain != nil {
+		if ch, ok := appContext.chain.Value.(chan bool); ok {
+			return ch
+		}
+	}
+	return nil
+}

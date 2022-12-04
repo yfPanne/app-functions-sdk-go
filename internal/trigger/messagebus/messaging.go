@@ -86,11 +86,11 @@ func (trigger *Trigger) Initialize(appWg *sync.WaitGroup, appCtx context.Context
 
 	if len(subscribeTopics) == 0 {
 		// Still allows subscribing to blank topic to receive all messages
-		trigger.topics = append(trigger.topics, types.TopicChannel{Topic: subscribeTopics, Messages: make(chan types.MessageEnvelope)})
+		trigger.topics = append(trigger.topics, types.TopicChannel{Topic: subscribeTopics, Messages: make(chan types.MessageEnvelope, 1000)})
 	} else {
 		topics := util.DeleteEmptyAndTrim(strings.FieldsFunc(subscribeTopics, util.SplitComma))
 		for _, topic := range topics {
-			trigger.topics = append(trigger.topics, types.TopicChannel{Topic: topic, Messages: make(chan types.MessageEnvelope)})
+			trigger.topics = append(trigger.topics, types.TopicChannel{Topic: topic, Messages: make(chan types.MessageEnvelope, 1000)})
 		}
 	}
 
